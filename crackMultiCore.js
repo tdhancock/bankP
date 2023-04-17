@@ -25,7 +25,6 @@ if (cluster.isMaster) {
     console.time(`${numCPUs} cores sync`)
     for (let i = 0; i < numCPUs; i++) {
         let msg = { id: i, start: Math.round(i * splitQty), end: Math.round(i * splitQty + splitQty) }
-        if(i == numCPUs - 1) msg = { id: i, start: Math.round(i * splitQty), end: Math.round(i * splitQty + splitQty) + 1}
         const worker = cluster.fork()
 
         worker.send(msg)
